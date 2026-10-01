@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}Contato & Localização — {{ info.nome }} | Carapicuíba - SP{% endblock %}
+
+{% block content %}
+<section class="section-padding" style="background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%); color: #fff; text-align: center;">
+  <div class="container">
+    <span class="section-tag" style="color: #38bdf8;">Atendimento e Acolhimento</span>
+    <h1 style="color: #fff; font-size: 2.5rem; margin-bottom: 0.8rem;">Fale Conosco</h1>
+    <p style="max-width: 700px; margin: 0 auto; color: #cbd5e1; font-size: 1.1rem;">
+      Estamos à disposição para agendamentos, dúvidas, voluntariado e visitas à nossa sede.
+    </p>
+  </div>
+</section>
+
+<section class="section-padding" style="background: var(--bg-page);">
+  <div class="container">
+    <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem;">
+      <!-- Dados de Contato e Horários -->
+      <div>
+        <div style="background: #ffffff; padding: 2.2rem; border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); margin-bottom: 2rem;">
+          <h2 style="font-size: 1.4rem; color: var(--primary); margin-bottom: 1.2rem;">Sede da Instituição</h2>
+          
+          <div style="margin-bottom: 1.2rem;">
+            <p><strong>📍 Endereço Completo:</strong><br>{{ info.endereco }}<br>Carapicuíba / SP — CEP {{ info.cep }}</p>
+          </div>
+
+          <div style="margin-bottom: 1.2rem;">
+            <p><strong>📞 Telefone / WhatsApp:</strong><br>{{ info.telefone }}</p>
+          </div>
+
+          <div style="margin-bottom: 1.2rem;">
+            <p><strong>✉️ E-mail Oficial:</strong><br>{{ info.email }}</p>
+          </div>
+
+          <div>
+            <p><strong>⏰ Horário de Funcionamento:</strong><br>{{ info.horario_funcionamento }}</p>
+          </div>
+        </div>
+
+        <!-- Mapa Google Maps Incorporado de Carapicuíba -->
+        <div style="border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.55835697368!2d-46.8402434!3d-23.5124016!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cf0252b48e4e9b%3A0x1a8f9d5a9b71e8c0!2sAv.%20Gov.%20M%C3%A1rio%20Covas%2C%2083%20-%20Jardim%20Pignatary%2C%20Carapicu%C3%ADba%20-%20SP%2C%2006310-240!5e0!3m2!1spt-BR!2sbr!4v1700000000000" 
+            width="100%" 
+            height="260" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+
+      <!-- Formulário de Contato -->
+      <div style="background: #ffffff; padding: 2.2rem; border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-md);">
+        <h2 style="font-size: 1.5rem; margin-bottom: 1.2rem;">Envie sua Mensagem</h2>
+        <form method="post" action="{% url 'contato' %}">
+          {% csrf_token %}
+          <div class="form-group">
+            <label class="form-label" for="id_nome">Seu Nome Completo:</label>
+            {{ form.nome }}
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="id_email">Seu E-mail:</label>
+              {{ form.email }}
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="id_telefone">WhatsApp / Telefone:</label>
+              {{ form.telefone }}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="id_tipo">Finalidade do Contato:</label>
+            {{ form.tipo }}
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="id_mensagem">Mensagem:</label>
+            {{ form.mensagem }}
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar Mensagem para Ricardo Leon</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

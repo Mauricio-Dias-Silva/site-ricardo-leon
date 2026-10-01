@@ -1,0 +1,730 @@
+/* ==========================================================================
+   DESIGN SYSTEM — ONG DE FISIOTERAPIA RICARDO LEON XAVIER
+   Tecnologias: Vanilla CSS, Design Responsivo, Acessibilidade WCAG 2.1
+   ========================================================================== */
+
+:root {
+  /* Paleta Nobre em Saúde & Bioengenharia */
+  --primary: #1e3a8a;
+  --primary-hover: #1e40af;
+  --primary-dark: #0f172a;
+  --primary-light: #eff6ff;
+  
+  --secondary: #059669;
+  --secondary-hover: #047857;
+  --secondary-light: #ecfdf5;
+  
+  --accent: #0284c7;
+  --accent-light: #f0f9ff;
+  
+  --warning: #d97706;
+  --warning-light: #fef3c7;
+  
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+  --bg-page: #f8fafc;
+  --bg-card: #ffffff;
+  --border-color: #e2e8f0;
+  
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 10px 25px rgba(15, 23, 42, 0.12);
+  --shadow-hover: 0 14px 30px rgba(30, 58, 138, 0.18);
+  
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+  
+  --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --font-base: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Modo Alto Contraste para Acessibilidade */
+body.high-contrast {
+  --primary: #000000;
+  --primary-hover: #1a1a1a;
+  --primary-light: #ffffff;
+  --secondary: #004d00;
+  --secondary-light: #e6ffe6;
+  --text-main: #000000;
+  --text-muted: #111111;
+  --bg-page: #ffffff;
+  --bg-card: #ffffff;
+  --border-color: #000000;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-base);
+  color: var(--text-main);
+  background-color: var(--bg-page);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Tipografia */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--primary-dark);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; margin-bottom: 0.8rem; }
+h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+p { margin-bottom: 1rem; }
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Barra de Acessibilidade Superior */
+.top-accessibility-bar {
+  background: var(--primary-dark);
+  color: #fff;
+  font-size: 0.85rem;
+  padding: 0.4rem 0;
+}
+
+.top-accessibility-bar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accessibility-tools button {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  margin-left: 6px;
+  transition: var(--transition);
+}
+
+.accessibility-tools button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #fff;
+}
+
+/* Header & Navegacao */
+.main-header {
+  background: #ffffff;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: var(--transition);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  font-size: 1.5rem;
+  box-shadow: 0 4px 10px rgba(30, 58, 138, 0.3);
+}
+
+.brand-text h1 {
+  font-size: 1.15rem;
+  color: var(--primary);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.brand-text p {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-main);
+  padding: 6px 4px;
+  position: relative;
+}
+
+.nav-links a:hover, .nav-links a.active {
+  color: var(--primary);
+}
+
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--primary);
+  border-radius: var(--radius-full);
+}
+
+.btn-header-donate {
+  background: linear-gradient(135deg, var(--secondary), #047857);
+  color: #fff !important;
+  padding: 8px 18px !important;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 10px rgba(5, 150, 105, 0.25);
+}
+
+.btn-header-donate:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(5, 150, 105, 0.35);
+}
+
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--primary);
+}
+
+/* Botoes Universais */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.6rem;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: center;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), #1d4ed8);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.btn-secondary {
+  background: #ffffff;
+  color: var(--primary);
+  border: 1.5px solid var(--primary);
+}
+
+.btn-secondary:hover {
+  background: var(--primary-light);
+  color: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, var(--secondary), #047857);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+}
+
+.btn-success:hover {
+  background: #047857;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 60%, #0369a1 100%);
+  color: #fff;
+  padding: 4.5rem 0 5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(5, 150, 105, 0.25) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 3rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  color: #93c5fd;
+}
+
+.hero-title {
+  color: #fff;
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 1.2rem;
+}
+
+.hero-title span {
+  color: #38bdf8;
+}
+
+.hero-subtitle {
+  font-size: 1.15rem;
+  color: #e2e8f0;
+  margin-bottom: 2rem;
+  max-width: 90%;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hero-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.hero-stat-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-stat h3 {
+  font-size: 2rem;
+  color: #38bdf8;
+  margin-bottom: 0.2rem;
+}
+
+.hero-stat p {
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  margin: 0;
+}
+
+/* Seções Gerais */
+.section-padding {
+  padding: 4.5rem 0;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 3rem auto;
+}
+
+.section-tag {
+  color: var(--secondary);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  display: inline-block;
+  margin-bottom: 0.4rem;
+}
+
+.section-desc {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+/* Cards de Servicos */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.service-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 2.2rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+  border-color: #bfdbfe;
+}
+
+.service-icon {
+  width: 56px;
+  height: 56px;
+  background: var(--primary-light);
+  color: var(--primary);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  margin-bottom: 1.4rem;
+}
+
+.service-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.service-card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  flex-grow: 1;
+}
+
+/* Banner NeuroAcesso (Tecnologia Assistiva UNIVESP) */
+.neuroacesso-banner {
+  background: linear-gradient(135deg, #092e20 0%, #064e3b 50%, #0f172a 100%);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  padding: 3rem;
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.neuroacesso-content h2 {
+  color: #fff;
+  font-size: 2.2rem;
+}
+
+.neuroacesso-badge {
+  background: #059669;
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+/* Depoimentos */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.8rem;
+}
+
+.testimonial-card {
+  background: #fff;
+  padding: 1.8rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.stars {
+  color: #f59e0b;
+  margin-bottom: 0.8rem;
+  font-size: 1.1rem;
+}
+
+.testimonial-text {
+  font-style: italic;
+  color: var(--text-main);
+  font-size: 0.95rem;
+  margin-bottom: 1.2rem;
+}
+
+.testimonial-author {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--primary);
+}
+
+.testimonial-condition {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* Caixa de Doacoes e PIX */
+.pix-box {
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+  border: 2px dashed #059669;
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.pix-key-display {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: var(--radius-md);
+  padding: 0.8rem 1.2rem;
+  font-family: monospace;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #065f46;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-copy {
+  background: #059669;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-copy:hover {
+  background: #047857;
+}
+
+/* Formularios */
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+  color: var(--text-main);
+}
+
+.form-control, .form-select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: #ffffff;
+  color: var(--text-main);
+  transition: var(--transition);
+}
+
+.form-control:focus, .form-select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15);
+}
+
+/* Mensagens de Alerta */
+.alert {
+  padding: 1rem 1.2rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.alert-success {
+  background-color: var(--secondary-light);
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+/* Rodape */
+.main-footer {
+  background: #0f172a;
+  color: #94a3b8;
+  padding: 4.5rem 0 2rem;
+  font-size: 0.95rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.footer-col h4 {
+  color: #ffffff;
+  font-size: 1.1rem;
+  margin-bottom: 1.2rem;
+  position: relative;
+}
+
+.footer-col h4::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 30px;
+  height: 2px;
+  background: var(--secondary);
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 0.6rem;
+}
+
+.footer-col ul li a {
+  color: #94a3b8;
+}
+
+.footer-col ul li a:hover {
+  color: #ffffff;
+  padding-left: 4px;
+}
+
+.footer-contact-item {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 0.8rem;
+  align-items: flex-start;
+}
+
+.footer-bottom {
+  border-top: 1px solid #1e293b;
+  padding-top: 1.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+/* Responsividade Mobile */
+@media (max-width: 992px) {
+  .hero-grid, .neuroacesso-banner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero-actions {
+    justify-content: center;
+  }
+  .hero-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    flex-direction: column;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-lg);
+    display: none;
+  }
+  .nav-links.active {
+    display: flex;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-title {
+    font-size: 2.2rem;
+  }
+}

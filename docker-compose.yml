@@ -1,0 +1,13 @@
+services:
+  web:
+    build: .
+    container_name: ong_ricardo_leon_web
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=False
+      - ALLOWED_HOSTS=ricardoleon.auracloud.com.br,localhost,127.0.0.1
+    volumes:
+      - ./media:/app/media
+      - ./db.sqlite3:/app/db.sqlite3

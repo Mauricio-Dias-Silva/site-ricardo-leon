@@ -1,0 +1,272 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Página Inicial — {{ info.nome }} | Reabilitação & Inclusão{% endblock %}
+
+{% block content %}
+<!-- HERO SECTION -->
+<section class="hero-section">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-badge">
+          <span>✨</span>
+          <span>Passaporte para a Reabilitação & Autonomia</span>
+        </div>
+        <h2 class="hero-title">
+          Fisioterapia Neurofuncional & <span>Esperança para Vidas</span>
+        </h2>
+        <p class="hero-subtitle">
+          Sob a liderança do fisioterapeuta <strong>Ricardo Leon Xavier</strong>, acolhemos pacientes com lesões neurológicas e motoras em Carapicuíba e região, combinando acolhimento humano com a fronteira da tecnologia assistiva.
+        </p>
+        <div class="hero-actions">
+          <a href="#servicos" class="btn btn-primary">Ver Nossos Serviços</a>
+          <a href="{% url 'doacoes' %}" class="btn btn-success">💚 Apoiar com Doação</a>
+          <a href="#contato" class="btn btn-secondary" style="color: #fff; border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.1);">Solicitar Atendimento</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3 style="color: #fff; margin-bottom: 1.2rem; font-size: 1.2rem;">Impacto Comunitário</h3>
+        <div class="hero-stat-box">
+          <div class="hero-stat">
+            <h3>+350</h3>
+            <p>Sessões de Fisioterapia Realizadas</p>
+          </div>
+          <div class="hero-stat">
+            <h3>100%</h3>
+            <p>Atendimento Dedicado e Filantrópico</p>
+          </div>
+          <div class="hero-stat">
+            <h3>IoT</h3>
+            <p>Projeto Assistivo NeuroAcesso</p>
+          </div>
+          <div class="hero-stat">
+            <h3>SP</h3>
+            <p>Sede em Carapicuíba</p>
+          </div>
+        </div>
+        <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0;">
+          "Nossa missão é fazer com que cada paciente redescubra sua força e autonomia todos os dias."<br>
+          <strong style="color: #fff;">— Ricardo Leon Xavier</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE RESUMO -->
+<section class="section-padding" style="background: #ffffff;">
+  <div class="container">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+      <div>
+        <span class="section-tag">Nossa Trajetória</span>
+        <h2>Compromisso com a Dignidade e a Saúde</h2>
+        <p>{{ info.sobre_texto }}</p>
+        <div style="margin: 1.5rem 0;">
+          <p><strong>🎯 Missão:</strong> {{ info.missao }}</p>
+          <p><strong>👁️ Visão:</strong> {{ info.visao }}</p>
+          <p><strong>⭐ Valores:</strong> {{ info.valores }}</p>
+        </div>
+        <a href="{% url 'sobre' %}" class="btn btn-secondary">Conheça Nossa História Completa ➔</a>
+      </div>
+      <div style="background: var(--primary-light); padding: 2.5rem; border-radius: var(--radius-lg); border: 1px solid #bfdbfe;">
+        <h3 style="color: var(--primary);">Atendimento Acolhedor em Carapicuíba</h3>
+        <p style="color: var(--text-muted);">
+          Localizados na Avenida Governador Mário Covas, 83, no Jardim Pignatary, dispomos de espaço adaptado para receber pacientes com mobilidade reduzida, cadeirantes e pessoas em recuperação pós-hospitalar.
+        </p>
+        <ul style="padding-left: 1.2rem; color: var(--text-main); margin-bottom: 1.5rem;">
+          <li>Acompanhamento clínico individualizado;</li>
+          <li>Foco em marcha, equilíbrio, espasticidade e coordenação fina;</li>
+          <li>Orientações posturais e de cuidados para os familiares e cuidadores;</li>
+          <li>Integração experimental com biossensores de EEG para monitoramento neurofuncional.</li>
+        </ul>
+        <a href="{% url 'contato' %}" class="btn btn-primary btn-sm">Agende uma Visita</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS EM DESTAQUE -->
+<section id="servicos" class="section-padding">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Especialidades Clínicas</span>
+      <h2>Serviços de Fisioterapia & Reabilitação</h2>
+      <p class="section-desc">Tratamentos especializados focados na recuperação das funções motoras, cognitivas e posturais.</p>
+    </div>
+
+    <div class="services-grid">
+      {% for servico in servicos %}
+        <div class="service-card">
+          <div class="service-icon">{{ servico.icone }}</div>
+          <h3>{{ servico.titulo }}</h3>
+          <p>{{ servico.descricao_curta }}</p>
+          <div style="margin-top: 1.2rem;">
+            <a href="{% url 'servicos' %}" style="font-weight: 600; font-size: 0.9rem;">Saiba mais detalhes ➔</a>
+          </div>
+        </div>
+      {% empty %}
+        <div class="service-card">
+          <div class="service-icon">🧠</div>
+          <h3>Fisioterapia Neurofuncional Pós-AVE</h3>
+          <p>Reabilitação especializada para recuperação motora, controle postural e marcha após acidentes vasculares encefálicos.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🏃</div>
+          <h3>Reabilitação Motora e Equilíbrio</h3>
+          <p>Exercícios de cinesioterapia e fortalecimento progressivo para prevenir quedas e reabilitar a autonomia de locomoção.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🤲</div>
+          <h3>Cinesioterapia Passiva e Ativa</h3>
+          <p>Mobilização articular, redução de espasticidade e ganho de amplitude de movimento para pacientes com rigidez muscular.</p>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div style="text-align: center; margin-top: 2.5rem;">
+      <a href="{% url 'servicos' %}" class="btn btn-secondary">Ver Todos os Tratamentos Oferecidos</a>
+    </div>
+  </div>
+</section>
+
+<!-- BANNER DE TECNOLOGIA ASSISTIVA NEUROACESSO -->
+<section class="container">
+  <div class="neuroacesso-banner">
+    <div class="neuroacesso-content">
+      <div class="neuroacesso-badge">Projeto Integrador UNIVESP</div>
+      <h2>Inovação: Sistema IoT NeuroAcesso</h2>
+      <p style="font-size: 1.05rem; opacity: 0.95; line-height: 1.6;">
+        Em cooperação com estudantes de Engenharia de Computação da Universidade Virtual do Estado de São Paulo (UNIVESP), a ONG do Ricardo Leon é pioneira no teste de capacetes de eletroencefalografia (EEG) e sistemas embarcados ESP32 de baixo custo, viabilizando o monitoramento das respostas cerebrais dos assistidos durante a fisioterapia.
+      </p>
+      <div style="margin-top: 1.5rem;">
+        <a href="{% url 'neuroacesso' %}" class="btn btn-success" style="background: #10b981; border: none;">Conheça a Tecnologia NeuroAcesso ➔</a>
+      </div>
+    </div>
+    <div style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: var(--radius-md); padding: 1.8rem; text-align: center;">
+      <div style="font-size: 3rem; margin-bottom: 0.5rem;">📡 ➔ 🧠 ➔ 💻</div>
+      <h4 style="color: #fff; margin-bottom: 0.5rem;">Bioengenharia Acessível</h4>
+      <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0;">
+        Eletrodos EEG + Conversor ADS1299 + Microcontrolador ESP32 com transmissão Wi-Fi e análise de sinais em tempo real.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="section-padding">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Histórias de Superação</span>
+      <h2>O Que Dizem os Pacientes e Familiares</h2>
+      <p class="section-desc">Relatos reais de quem encontrou acolhimento e resultados em nossa entidade.</p>
+    </div>
+
+    <div class="testimonials-grid">
+      {% for dep in depoimentos %}
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"{{ dep.depoimento }}"</p>
+          <div class="testimonial-author">{{ dep.nome }}</div>
+          <div class="testimonial-condition">{{ dep.condicao }}</div>
+        </div>
+      {% empty %}
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"O acolhimento do Dr. Ricardo Leon devolveu a esperança para o meu pai após o derrame. O tratamento tem sido incrível para a recuperação dos passos dele."</p>
+          <div class="testimonial-author">Maria Helena Silveira</div>
+          <div class="testimonial-condition">Filha de paciente assistido</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"A paciência e o carinho com que tratam cada um de nós não tem preço. Sou muito grato por todo o trabalho dessa ONG aqui em Carapicuíba."</p>
+          <div class="testimonial-author">Antônio Carlos Rocha</div>
+          <div class="testimonial-condition">Paciente em reabilitação motora</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"A dedicação e o interesse em trazer novas tecnologias para nos ajudar é emocionante. A ONG faz a diferença na nossa comunidade."</p>
+          <div class="testimonial-author">Fernanda Lima</div>
+          <div class="testimonial-condition">Assistida há 6 meses</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO DE DOAÇÃO / PIX -->
+<section class="section-padding" style="background: #ffffff;">
+  <div class="container">
+    <div class="pix-box">
+      <span class="section-tag">Sustentabilidade Social</span>
+      <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Ajude a Manter Nossos Atendimentos</h2>
+      <p style="color: var(--text-muted); font-size: 0.95rem;">
+        Sua contribuição garante sessões de fisioterapia gratuitas, manutenção de equipamentos e acolhimento para famílias que mais precisam.
+      </p>
+
+      <div class="pix-key-display">
+        <span id="pixKeyText">{{ info.chave_pix }}</span>
+        <button id="copyPixBtn" class="btn-copy">Copiar Chave</button>
+      </div>
+
+      <p style="font-size: 0.85rem; color: #64748b;">
+        Chave PIX oficial registrada em nome da instituição. Qualquer valor faz a diferença na vida de um assistido!
+      </p>
+      <a href="{% url 'doacoes' %}" class="btn btn-success" style="margin-top: 1rem;">Conheça Outras Formas de Apoiar</a>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULÁRIO DE CONTATO & VOLUNTARIADO -->
+<section id="contato" class="section-padding">
+  <div class="container">
+    <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem;">
+      <div>
+        <span class="section-tag">Fale Conosco</span>
+        <h2>Estamos Prontos para Ouvir Você</h2>
+        <p style="color: var(--text-muted); margin-bottom: 1.8rem;">
+          Seja para solicitar atendimento fisioterapêutico para um familiar, candidatar-se como voluntário ou propor uma parceria institucional, envie sua mensagem diretamente para nossa equipe.
+        </p>
+
+        <div style="background: #ffffff; padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); margin-bottom: 1rem;">
+          <p><strong>📍 Endereço:</strong><br>{{ info.endereco }}<br>Carapicuíba - SP — CEP {{ info.cep }}</p>
+          <p><strong>📞 Telefone:</strong> {{ info.telefone }}</p>
+          <p><strong>✉️ E-mail:</strong> {{ info.email }}</p>
+          <p><strong>⏰ Horários:</strong> {{ info.horario_funcionamento }}</p>
+        </div>
+      </div>
+
+      <div style="background: #ffffff; padding: 2.2rem; border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-md);">
+        <h3 style="margin-bottom: 1.2rem;">Envie uma Mensagem</h3>
+        <form method="post" action="{% url 'home' %}#contato">
+          {% csrf_token %}
+          <div class="form-group">
+            <label class="form-label" for="id_nome">Seu Nome Completo:</label>
+            {{ form.nome }}
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="id_email">Seu E-mail:</label>
+              {{ form.email }}
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="id_telefone">WhatsApp / Telefone:</label>
+              {{ form.telefone }}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="id_tipo">Objetivo do Contato:</label>
+            {{ form.tipo }}
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="id_mensagem">Sua Mensagem ou Solicitação:</label>
+            {{ form.mensagem }}
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar Mensagem para Ricardo Leon</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

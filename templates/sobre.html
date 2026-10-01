@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}Quem Somos — {{ info.nome }} | História e Missão em Carapicuíba{% endblock %}
+
+{% block content %}
+<section class="section-padding" style="background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%); color: #fff;">
+  <div class="container text-center">
+    <span class="section-tag" style="color: #38bdf8;">Conheça Nossa História</span>
+    <h1 style="color: #fff; font-size: 2.5rem; margin-bottom: 1rem;">Dedicação à Fisioterapia e à Vida</h1>
+    <p style="max-width: 750px; margin: 0 auto; color: #cbd5e1; font-size: 1.1rem;">
+      Uma trajetória de acolhimento comunitário e superação de limites neurológicos no coração de Carapicuíba/SP.
+    </p>
+  </div>
+</section>
+
+<section class="section-padding" style="background: #ffffff;">
+  <div class="container">
+    <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3.5rem; align-items: center;">
+      <div>
+        <span class="section-tag">Fundação e Propósito</span>
+        <h2>O Trabalho Liderado por Ricardo Leon Xavier</h2>
+        <p>{{ info.sobre_texto }}</p>
+        <p>
+          A história da instituição nasceu da percepção sensível de que pacientes com sequelas graves de Acidente Vascular Encefálico (AVE), paralisia cerebral infantil, traumatismos cranioencefálicos e lesões medulares frequentemente enfrentavam a interrupção precoce de seus tratamentos no sistema convencional de saúde devido à carência de vagas continuadas e à escassez de centros especializados no terceiro setor.
+        </p>
+        <p>
+          Diante desse cenário desafiador, Ricardo Leon Xavier articulou voluntários, profissionais de saúde e membros da sociedade civil para estruturar um espaço terapêutico humanizado na Avenida Governador Mário Covas, nº 83, no bairro Jardim Pignatary, em Carapicuíba. Desde então, a entidade opera como porto seguro para famílias em busca de dignidade e reabilitação motora.
+        </p>
+      </div>
+
+      <div style="background: var(--bg-page); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2.2rem; box-shadow: var(--shadow-md);">
+        <h3 style="color: var(--primary); margin-bottom: 1.2rem;">Pilares Institucionais</h3>
+        
+        <div style="margin-bottom: 1.5rem;">
+          <h4 style="color: var(--secondary); margin-bottom: 0.3rem;">🎯 Nossa Missão</h4>
+          <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0;">{{ info.missao }}</p>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <h4 style="color: var(--accent); margin-bottom: 0.3rem;">👁️ Nossa Visão</h4>
+          <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0;">{{ info.visao }}</p>
+        </div>
+
+        <div>
+          <h4 style="color: var(--warning); margin-bottom: 0.3rem;">⭐ Nossos Valores</h4>
+          <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0;">{{ info.valores }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO PARCERIA UNIVESP -->
+<section class="section-padding" style="background: var(--bg-page);">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Extensão Universitária & Inovação</span>
+      <h2>Parceria Acadêmica com a UNIVESP</h2>
+      <p class="section-desc">
+        A união entre a prática clínica comunitária e a pesquisa acadêmica de ponta em Engenharia de Computação.
+      </p>
+    </div>
+
+    <div style="max-width: 850px; margin: 0 auto; background: #fff; padding: 2.5rem; border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+      <p>
+        No segundo semestre de 2026, a ONG formalizou uma cooperação pioneira com os estudantes do <strong>Projeto Integrador VI (PI VI) do curso de Engenharia de Computação da Universidade Virtual do Estado de São Paulo (UNIVESP)</strong>, sob orientação tutorial do Polo Poá.
+      </p>
+      <p>
+        Essa cooperação viabilizou duas frentes transformadoras para a entidade:
+      </p>
+      <ol style="padding-left: 1.5rem; margin-bottom: 1.5rem; line-height: 1.8;">
+        <li><strong>Criação da Presença Digital Oficial:</strong> Desenvolvimento e hospedagem do portal web da ONG com o framework <strong>Django (Python)</strong> na nuvem <strong>AuraCloud</strong> (<code>auracloud.com.br</code>), dotando a instituição de transparência, captação de recursos e autonomia de comunicação.</li>
+        <li><strong>Pesquisa e Aplicação do Sistema IoT NeuroAcesso:</strong> Prototipagem e ensaios experimentais de um capacete de eletroencefalografia (EEG) vestível baseado em microcontroladores ESP32 e conversores ADS1299 para monitoramento em tempo real das respostas neurofuncionais dos pacientes durante as terapias.</li>
+      </ol>
+      <div style="text-align: center; margin-top: 2rem;">
+        <a href="{% url 'neuroacesso' %}" class="btn btn-primary">Conhecer o Projeto NeuroAcesso em Detalhes ➔</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}ONG de Fisioterapia — Ricardo Leon Xavier | Reabilitação e Tecnologia Assistiva{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}Acolhimento, tratamento fisioterapêutico neurofuncional especializado e tecnologia assistiva para reabilitação motora em Carapicuíba e região.{% endblock %}">
+  <meta name="keywords" content="Fisioterapia Carapicuíba, Ricardo Leon, Neurofuncional, Reabilitação AVE, Tecnologia Assistiva, NeuroAcesso, UNIVESP, Doação ONG">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+  <!-- Barra de Acessibilidade Superior (WCAG 2.1) -->
+  <aside class="top-accessibility-bar" aria-label="Ferramentas de Acessibilidade">
+    <div class="container">
+      <div>
+        <span>📍 {{ info.endereco }}</span>
+      </div>
+      <div class="accessibility-tools">
+        <span>Acessibilidade:</span>
+        <button id="increaseFont" title="Aumentar Fonte">A+</button>
+        <button id="decreaseFont" title="Diminuir Fonte">A-</button>
+        <button id="resetFont" title="Restaurar Fonte">A</button>
+        <button id="toggleContrast" title="Alternar Alto Contraste">◐ Contraste</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Header Principal com Navegação Responsiva -->
+  <header class="main-header">
+    <div class="container">
+      <nav class="navbar" role="navigation" aria-label="Menu Principal">
+        <a href="{% url 'home' %}" class="brand-logo" title="Página Inicial da ONG">
+          <div class="brand-icon">🧠</div>
+          <div class="brand-text">
+            <h1>ONG Ricardo Leon</h1>
+            <p>Fisioterapia & Reabilitação</p>
+          </div>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir Menu de Navegação">☰</button>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Início</a></li>
+          <li><a href="{% url 'sobre' %}" class="{% if request.resolver_match.url_name == 'sobre' %}active{% endif %}">Quem Somos</a></li>
+          <li><a href="{% url 'servicos' %}" class="{% if request.resolver_match.url_name == 'servicos' %}active{% endif %}">Serviços</a></li>
+          <li><a href="{% url 'neuroacesso' %}" class="{% if request.resolver_match.url_name == 'neuroacesso' %}active{% endif %}">NeuroAcesso IoT</a></li>
+          <li><a href="{% url 'noticias' %}" class="{% if request.resolver_match.url_name == 'noticias' or request.resolver_match.url_name == 'noticia_detalhe' %}active{% endif %}">Notícias</a></li>
+          <li><a href="{% url 'contato' %}" class="{% if request.resolver_match.url_name == 'contato' %}active{% endif %}">Contato</a></li>
+          <li><a href="{% url 'doacoes' %}" class="btn-header-donate">💚 Apoiar ONG</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mensagens de Alerta (Flash Messages) -->
+  {% if messages %}
+    <div class="container" style="margin-top: 1.5rem;">
+      {% for message in messages %}
+        <div class="alert alert-success" role="alert">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <!-- Conteúdo Principal -->
+  <main id="conteudo-principal">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Rodapé Institucional -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom: 1.2rem;">
+            <div class="brand-icon">🧠</div>
+            <div class="brand-text">
+              <h3 style="color: #fff; margin: 0; font-size: 1.2rem;">{{ info.nome }}</h3>
+              <p style="color: #94a3b8;">Fisioterapia & Reabilitação</p>
+            </div>
+          </div>
+          <p>{{ info.slogan }}</p>
+          <p style="font-size: 0.85rem; color: #64748b;">
+            Projeto e portal integrados ao Projeto Integrador VI do curso de Engenharia de Computação da UNIVESP.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navegação Rápida</h4>
+          <ul>
+            <li><a href="{% url 'home' %}">Página Inicial</a></li>
+            <li><a href="{% url 'sobre' %}">Sobre Ricardo Leon</a></li>
+            <li><a href="{% url 'servicos' %}">Tratamentos Especializados</a></li>
+            <li><a href="{% url 'neuroacesso' %}">Inovação NeuroAcesso IoT</a></li>
+            <li><a href="{% url 'doacoes' %}">Como Fazer Doações</a></li>
+            <li><a href="{% url 'contato' %}">Agendamento & Localização</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Atendimento</h4>
+          <p><strong>Horários:</strong><br>{{ info.horario_funcionamento }}</p>
+          <p><strong>Chave PIX Oficial:</strong><br><code style="color: #6ee7b7;">{{ info.chave_pix }}</code></p>
+          <p><a href="{% url 'doacoes' %}" class="btn btn-sm btn-success" style="margin-top: 0.5rem;">Fazer Doação Online</a></p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Sede da Instituição</h4>
+          <div class="footer-contact-item">
+            <span>📍</span>
+            <span>{{ info.endereco }}<br>CEP {{ info.cep }}</span>
+          </div>
+          <div class="footer-contact-item">
+            <span>📞</span>
+            <span>{{ info.telefone }}</span>
+          </div>
+          <div class="footer-contact-item">
+            <span>✉️</span>
+            <span>{{ info.email }}</span>
+          </div>
+          <div style="margin-top: 1.2rem;">
+            <a href="/admin/" style="font-size: 0.8rem; color: #64748b;" target="_blank">🔐 Acesso Administrativo (Ricardo Leon)</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 {{ info.nome }} — Todos os direitos reservados. Hospedado na plataforma de nuvem <strong>AuraCloud</strong> (<code>auracloud.com.br</code>).</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{% static 'js/main.js' %}"></script>
+  {% block extra_scripts %}{% endblock %}
+</body>
+</html>

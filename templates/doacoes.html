@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Como Ajudar & Doações — {{ info.nome }}{% endblock %}
+
+{% block content %}
+<section class="section-padding" style="background: linear-gradient(135deg, #064e3b 0%, #059669 100%); color: #fff; text-align: center;">
+  <div class="container">
+    <span class="section-tag" style="color: #a7f3d0;">Solidariedade que Transforma</span>
+    <h1 style="color: #fff; font-size: 2.6rem; margin-bottom: 0.8rem;">Apoie a Reabilitação em Carapicuíba</h1>
+    <p style="max-width: 720px; margin: 0 auto; color: #ecfdf5; font-size: 1.15rem;">
+      Sua doação garante que pacientes carentes continuem recebendo fisioterapia especializada e atendimento humanizado.
+    </p>
+  </div>
+</section>
+
+<section class="section-padding" style="background: var(--bg-page);">
+  <div class="container">
+    <div style="max-width: 800px; margin: 0 auto;">
+      <!-- CARD PIX PRINCIPAL -->
+      <div class="pix-box" style="margin-bottom: 3rem;">
+        <span class="section-tag">Doação Rápida via PIX</span>
+        <h2 style="font-size: 1.9rem; margin-bottom: 0.6rem;">Contribua em Segundos</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">
+          Abra o aplicativo do seu banco, escolha a opção PIX e utilize a chave oficial da ONG abaixo:
+        </p>
+
+        <div class="pix-key-display">
+          <span id="pixKeyText">{{ info.chave_pix }}</span>
+          <button id="copyPixBtn" class="btn-copy">Copiar Chave</button>
+        </div>
+
+        <p style="font-size: 0.85rem; color: #64748b;">
+          <strong>Titular:</strong> {{ info.nome }}<br>
+          <strong>Instituição:</strong> Banco Cooperativo / Conta Social Filantrópica
+        </p>
+      </div>
+
+      <!-- OUTRAS FORMAS DE AJUDAR -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+        <div style="background: #fff; padding: 2rem; border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+          <div style="font-size: 2rem; margin-bottom: 0.8rem;">🤝</div>
+          <h3 style="color: var(--primary);">Seja um Voluntário</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">
+            Você é fisioterapeuta, terapeuta ocupacional, estudante de saúde ou deseja contribuir na recepção e organização de eventos da ONG? Venha fazer parte do nosso time.
+          </p>
+          <a href="{% url 'contato' %}" class="btn btn-sm btn-secondary">Quero Ser Voluntário</a>
+        </div>
+
+        <div style="background: #fff; padding: 2rem; border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+          <div style="font-size: 2rem; margin-bottom: 0.8rem;">🏢</div>
+          <h3 style="color: var(--primary);">Parcerias Corporativas</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">
+            Empresas, comércios locais e fundações podem apadrinhar atendimentos, doar equipamentos de reabilitação (macas, faixas elásticas, paralelas) ou financiar bolsas terapêuticas.
+          </p>
+          <a href="{% url 'contato' %}" class="btn btn-sm btn-secondary">Falar com a Diretoria</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

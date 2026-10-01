@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}NeuroAcesso IoT — Tecnologia Assistiva & Bioengenharia | {{ info.nome }}{% endblock %}
+
+{% block content %}
+<section class="section-padding" style="background: linear-gradient(135deg, #092e20 0%, #064e3b 50%, #0f172a 100%); color: #fff; text-align: center;">
+  <div class="container">
+    <span class="section-tag" style="color: #6ee7b7;">Projeto de Extensão & Inovação</span>
+    <h1 style="color: #fff; font-size: 2.6rem; margin-bottom: 0.8rem;">Sistema IoT NeuroAcesso</h1>
+    <p style="max-width: 780px; margin: 0 auto; color: #a7f3d0; font-size: 1.15rem;">
+      Monitoramento neural de baixo custo durante sessões de fisioterapia na ONG de Ricardo Leon Xavier, desenvolvido em parceria com o Projeto Integrador VI da UNIVESP.
+    </p>
+  </div>
+</section>
+
+<section class="section-padding" style="background: #ffffff;">
+  <div class="container">
+    <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3.5rem; align-items: center;">
+      <div>
+        <span class="section-tag">O Que é o Projeto</span>
+        <h2>Bioengenharia e Internet das Coisas a Serviço da Reabilitação</h2>
+        <p>
+          O <strong>NeuroAcesso</strong> é uma plataforma experimental de sensoriamento de sinais cerebrais (eletroencefalografia - EEG) concebida para atuar no auxílio de sessões de fisioterapia neurofuncional. O projeto visa preencher a lacuna entre equipamentos hospitalares sofisticados de alto custo e a realidade prática de instituições filantrópicas comunitárias.
+        </p>
+        <p>
+          Utilizando hardware aberto e componentes acessíveis, o sistema permite que o fisioterapeuta <strong>Ricardo Leon Xavier</strong> visualize a atividade elétrica do córtex motor dos assistidos enquanto eles realizam exercícios de reabilitação motora (como movimentação de membros paréticos e tentativas de preensão manual), identificando picos de concentração, relaxamento ou fadiga cerebral.
+        </p>
+      </div>
+
+      <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: var(--radius-lg); padding: 2rem; box-shadow: var(--shadow-sm);">
+        <h3 style="color: #1e3a8a; font-size: 1.25rem; margin-bottom: 1rem;">Cadeia de Aquisição Tecnológica</h3>
+        <ul style="padding-left: 1.2rem; color: #334155; font-size: 0.95rem; line-height: 1.8;">
+          <li><strong>Eletrodos EEG:</strong> Dispostos sobre o couro cabeludo conforme o sistema internacional 10-20;</li>
+          <li><strong>Módulos ADS1299:</strong> Conversores analógico-digitais sigma-delta de 24 bits de baixíssimo ruído;</li>
+          <li><strong>Microcontrolador ESP32:</strong> Coleta via barramento SPI e transmissão em tempo real via Wi-Fi/MQTT;</li>
+          <li><strong>Filtragem Digital:</strong> Filtros Butterworth (1 a 45 Hz) e Notch 60Hz em Python/SciPy;</li>
+          <li><strong>FFT e Análise Espectral:</strong> Extração das ondas cerebrais Alfa, Beta e Teta;</li>
+          <li><strong>Telemetria na Nuvem:</strong> Ingestão na infraestrutura <strong>AuraCloud</strong> (<code>auracloud.com.br</code>).</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Etapas Clínicas na ONG -->
+    <div style="margin-top: 4.5rem;">
+      <div class="section-header">
+        <span class="section-tag">Metodologia na Prática</span>
+        <h2>Como o NeuroAcesso é Aplicado na ONG</h2>
+        <p class="section-desc">Procedimentos de segurança, conforto e validação clínica conduzidos com o fisioterapeuta.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+        <div style="background: var(--bg-page); padding: 2rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+          <div style="font-size: 2.2rem; margin-bottom: 0.8rem;">1️⃣</div>
+          <h4 style="color: var(--primary);">Adaptação & Conforto</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted);">
+            O paciente é acomodado confortavelmente com o capacete não invasivo de biopotenciais antes do início das atividades de fisioterapia.
+          </p>
+        </div>
+
+        <div style="background: var(--bg-page); padding: 2rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+          <div style="font-size: 2.2rem; margin-bottom: 0.8rem;">2️⃣</div>
+          <h4 style="color: var(--primary);">Exercício & Telemetria</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted);">
+            Durante a realização da cinesioterapia, os sinais neurofuncionais são transmitidos via rede sem fio ao computador de monitoramento.
+          </p>
+        </div>
+
+        <div style="background: var(--bg-page); padding: 2rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+          <div style="font-size: 2.2rem; margin-bottom: 0.8rem;">3️⃣</div>
+          <h4 style="color: var(--primary);">Feedback Clínico</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted);">
+            Ricardo Leon acompanha os níveis de engajamento do paciente no dashboard em tempo real, ajustando a intensidade terapêutica.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
